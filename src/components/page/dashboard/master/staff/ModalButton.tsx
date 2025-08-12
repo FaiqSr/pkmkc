@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 
 const ModalButton = () => {
-  // State untuk mengontrol visibilitas modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -10,7 +9,6 @@ const ModalButton = () => {
 
   return (
     <>
-      {/* Tombol untuk memicu modal */}
       <button
         onClick={openModal}
         className="bg-white border-slate-200 font-semibold px-5 py-2 rounded-sm hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-opacity-50 transition-colors duration-300"
@@ -21,11 +19,11 @@ const ModalButton = () => {
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 flex items-center justify-center p-4"
-          onClick={closeModal} // Menutup modal saat backdrop diklik
+          onClick={closeModal}
         >
           <div
             className="bg-white rounded-xl shadow-2xl w-full max-w-md p-6 transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale"
-            onClick={(e) => e.stopPropagation()} // Mencegah modal tertutup saat area di dalam modal diklik
+            onClick={(e) => e.stopPropagation()}
           >
             <section className="flex items-center justify-between pb-4 border-b border-slate-200">
               <h2 className="text-xl font-bold text-gray-800">
