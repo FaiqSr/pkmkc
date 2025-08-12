@@ -4,7 +4,7 @@ import "./globals.css";
 
 function DashboardLayout({ children }: { children: ReactNode }) {
   return (
-    <html suppressHydrationWarning>
+    <html>
       <body className="bg-slate-100">
         <NavBarDashboard />
         <main className="pt-5">{children}</main>
