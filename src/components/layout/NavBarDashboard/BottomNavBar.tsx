@@ -1,107 +1,12 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { FaDatabase } from "react-icons/fa";
+import { GoGear } from "react-icons/go";
 import { HiDocumentReport } from "react-icons/hi";
-import Image from "next/image";
 import { IoIosArrowDown } from "react-icons/io";
 import { RiHomeLine } from "react-icons/ri";
-import { GoGear } from "react-icons/go";
-import { CiLogout, CiSettings } from "react-icons/ci";
-
-const NavBarDashboard = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(false);
-  }, []);
-
-  if (loading) {
-    return null;
-  }
-
-  return (
-    <header className="shadow">
-      <section className="bg-white border-b border-slate-200">
-        <TopNavBar />
-      </section>
-      <section className="bg-white">
-        <BottomNavBar />
-      </section>
-    </header>
-  );
-};
-
-export default NavBarDashboard;
-
-const TopNavBar = () => {
-  const [profileState, setProfileState] = useState(false);
-  return (
-    <section className="flex justify-between container mx-auto items-center py-2 px-5 ">
-      <section>
-        <Link href={"/dashboard"} className="font-semibold text-2xl text-black">
-          Ignisafe
-        </Link>
-      </section>
-      <section>
-        <section className="flex items-center gap-3 relative">
-          <section className="text-end text-sm font-thin">
-            <p>Lorem ipsum</p>
-          </section>
-          <button
-            className="border-2 rounded-sm border-white text-white cursor-pointer"
-            onClick={() => setProfileState(!profileState)}
-          >
-            <Image
-              src={`/images/profile.png`}
-              alt="avatar"
-              width={30}
-              height={30}
-              className="object-cover rounded-sm h-full w-full"
-            />
-          </button>
-          <nav
-            className={`absolute text-black right-5 top-12 border-slate-200 border rounded-lg transition-all duration-500 ease-in bg-white p-3 ${
-              profileState ? "" : "hidden"
-            }`}
-          >
-            <ul>
-              <li className="text-start text-sm pb-2">
-                <p className="font-semibold">Raden Tuhibagus Ahmad Sazira</p>
-                <p className="font-thin">Admin</p>
-              </li>
-              <hr />
-              <li>
-                <ul className="p-2 flex flex-col gap-2">
-                  <li className=" rounded-sm hover:bg-slate-200">
-                    <Link
-                      href={"/"}
-                      className="flex gap-2 py-2 pl-1 pr-30 items-center text-sm"
-                    >
-                      <CiSettings size={25} />
-                      Settings
-                    </Link>
-                  </li>
-
-                  <li className=" rounded-sm hover:bg-slate-200">
-                    <Link
-                      href={"/"}
-                      className="flex gap-2 py-2 pl-1 pr-30 items-center text-sm"
-                    >
-                      <CiLogout size={25} />
-                      Logout
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
-        </section>
-      </section>
-    </section>
-  );
-};
 
 const BottomNavBar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(0);
@@ -128,7 +33,6 @@ const BottomNavBar = () => {
             </Link>
           </li>
 
-          {/* Master Data Dropdown */}
           <li
             className="relative"
             onClick={() => setDropdownOpen(isDropdownOpen == 1 ? 0 : 1)}
@@ -144,26 +48,26 @@ const BottomNavBar = () => {
             </button>
 
             <ul
-              className={`absolute w-full min-w-max border rounded-lg px-2 py-2 bg-white top-14 left-0 shadow-lg z-10 ${
+              className={`absolute w-full min-w-max border border-slate-200 rounded-lg px-2 py-2 bg-white top-14 left-0 shadow-lg z-10 ${
                 isDropdownOpen == 1 ? "block" : "hidden"
               }`}
             >
               <li
-                className={`py-2 px-3 hover:text-blue-500 rounded-md ${
+                className={`py-2 px-3 hover:text-blue-500 hover:bg-slate-200 rounded-md ${
                   pathname === "/dashboard/master/staff" ? "text-blue-500" : ""
                 }`}
               >
                 <Link href={"/dashboard/master/staff"}>Staff</Link>
               </li>
               <li
-                className={`py-2 px-3 hover:text-blue-500 rounded-md ${
+                className={`py-2 px-3 hover:text-blue-500 hover:bg-slate-200 rounded-md ${
                   pathname === "/dashboard/master/alat" ? "text-blue-500" : ""
                 }`}
               >
                 <Link href={"/dashboard/master/alat"}>Alat</Link>
               </li>
               <li
-                className={`py-2 px-3 hover:text-blue-500 rounded-md ${
+                className={`py-2 px-3 hover:text-blue-500 hover:bg-slate-200 rounded-md ${
                   pathname === "/dashboard/master/lokasi" ? "text-blue-500" : ""
                 }`}
               >
@@ -178,7 +82,7 @@ const BottomNavBar = () => {
           >
             <button
               onClick={() => setDropdownOpen(isDropdownOpen == 2 ? 0 : 2)}
-              className="flex items-center gap-2 px-4 py-3 hover:bg-slate-100"
+              className="flex items-center gap-2 px-4 py-3 hover:bg-slate-100 cursor-pointer rounded-sm"
             >
               <GoGear size={30} />
               Data Operasional
@@ -186,12 +90,12 @@ const BottomNavBar = () => {
             </button>
 
             <ul
-              className={`absolute w-full min-w-max border rounded-lg px-2 py-2 bg-white top-14 left-0 shadow-lg z-10 ${
+              className={`absolute w-full min-w-max border border-slate-200 rounded-lg px-2 py-2 bg-white top-15 left-0 shadow-lg z-10 ${
                 isDropdownOpen == 2 ? "block" : "hidden"
               }`}
             >
               <li
-                className={`py-2 px-3 hover:text-blue-500 rounded-md ${
+                className={`py-2 px-3 hover:text-blue-500 hover:bg-slate-200 rounded-md ${
                   pathname === "/dashboard/operasional/alat"
                     ? "text-blue-500"
                     : ""
@@ -200,7 +104,7 @@ const BottomNavBar = () => {
                 <Link href={"/dashboard/operasional/alat"}>Alat Aktif</Link>
               </li>
               <li
-                className={`py-2 px-3 hover:text-blue-500 rounded-md ${
+                className={`py-2 px-3 hover:text-blue-500 hover:bg-slate-200 rounded-md ${
                   pathname === "/dashboard/operasional/monitor"
                     ? "text-blue-500"
                     : ""
@@ -229,3 +133,5 @@ const BottomNavBar = () => {
     </section>
   );
 };
+
+export default BottomNavBar;
